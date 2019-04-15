@@ -10,6 +10,8 @@ const routes = require('../api/routes/v1');
 const { logs } = require('./vars');
 const strategies = require('./passport');
 const error = require('../api/middlewares/error');
+const swaggerConfig = require('./swagger');
+
 
 /**
 * Express instance
@@ -37,6 +39,7 @@ app.use(helmet());
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());
 
+swaggerConfig(app);
 // enable authentication
 app.use(passport.initialize());
 passport.use('jwt', strategies.jwt);
@@ -54,5 +57,6 @@ app.use(error.notFound);
 
 // error handler, send stacktrace only during development
 app.use(error.handler);
+
 
 module.exports = app;

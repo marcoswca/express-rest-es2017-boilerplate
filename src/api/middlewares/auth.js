@@ -6,9 +6,11 @@ const APIError = require('../utils/APIError');
 const ADMIN = 'admin';
 const LOGGED_USER = '_loggedUser';
 
+const Bluebird = require('bluebird'); // eslint-disable-line no-global-assign
+
 const handleJWT = (req, res, next, roles) => async (err, user, info) => {
   const error = err || info;
-  const logIn = Promise.promisify(req.logIn);
+  const logIn = Bluebird.promisify(req.logIn);
   const apiError = new APIError({
     message: error ? error.message : 'Unauthorized',
     status: httpStatus.UNAUTHORIZED,
