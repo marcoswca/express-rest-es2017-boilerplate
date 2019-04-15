@@ -1,0 +1,44 @@
+ /**
+ * @swagger
+ * definitions:
+ *   Login:
+ *     type: object
+ *     properties:
+ *       email:
+ *         type: string
+ *       password:
+ *         type: string
+ */
+
+/**
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     tags:
+ *       - Auth
+ *     summary: Auth service.
+ *     description: Auth service
+ *     produces:
+ *       - application/json
+ *     consumes:
+ *       - application/json
+ *     requestBody:
+ *       description: Auth payload
+ *       content: 
+ *         'application/json':
+ *           schema:
+ *             $ref: '#/definitions/Login'
+ *           example:
+ *             email: userTest@userMail.com
+ *             password: password
+ *     responses:
+ *       200:
+ *         description: Operation executed with success
+ *       400:
+ *         description: Bad request
+ *       404:
+ *         description: Not found
+ *       500:
+ *         description: Internal server error
+ *
+ */

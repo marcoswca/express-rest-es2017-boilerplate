@@ -1,0 +1,257 @@
+/**
+ * @swagger
+ * definitions:
+ *   User:
+ *     type: object
+ *     properties:
+ *       id:
+ *         type: number
+ *       name:
+ *         type: string
+ *       email:
+ *         type: string
+ *       password:
+ *         type: string
+ *       role:
+ *         type: string
+ *       picture:
+ *         type: string
+ *       services:
+ *         type: object
+ *         properties:
+ *           facebook:
+ *             type: string
+ *           google:
+ *             type: string 
+ */
+
+/**
+ * @swagger
+ * /users/:
+ *   get:
+ *     tags:
+ *       - Users
+ *     summary: Get all users.
+ *     description: Get all users
+ *     security:
+ *      - bearerAuth: [ADMIN]
+ *     produces:
+ *       - application/json
+ *     consumes:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Operation executed with success
+ *         content: 
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/definitions/User'
+ *             example:
+ *               [{
+ *               id: 1,
+ *               name: usertest,
+ *               email: userTest@userMail.com,
+ *               role: ADMIN,
+ *               services: {facebook: 'facebook token', google: 'google token'}
+ *               }]
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: Unauthorized error
+ *       404:
+ *         description: Not found
+ *       500:
+ *         description: Internal server error
+ *
+ *   post:
+ *     tags:
+ *       - Users
+ *     summary: Create a user.
+ *     description: Create a user
+ *     security:
+ *      - bearerAuth: [ADMIN]
+ *     produces:
+ *       - application/json
+ *     consumes:
+ *       - application/json
+ *     requestBody:
+ *       description: User payload
+ *       content: 
+ *         'application/json':
+ *           schema:
+ *             $ref: '#/definitions/User'
+ *           example:
+ *             name: usertest
+ *             email: userTest@userMail.com
+ *             role: ADMIN
+ *             password: password
+ *             services: {facebook: 'facebook token', google: 'google token'}
+ *     responses:
+ *       201:
+ *         description: Operation executed with success
+ *       400:
+ *         description: Bad request
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
+ * @swagger
+ * /users/{id}:
+ *  get:
+ *    tags:
+ *      - Users
+ *    summary: Find user by id.
+ *    description: Find user by id
+ *    security:
+ *      - bearerAuth: [admin]   
+ *    produces:
+ *      - application/json
+ *    consumes:
+ *      - application/json
+ *    parameters:
+ *       - name: id
+ *         in: path
+ *         description:
+ *         required: True
+ *         schema:
+ *           type: 'string'
+ *    responses:
+ *       200:
+ *         description: Operation executed with success
+ *         content: 
+ *           application/json:
+ *             schema:
+ *               $ref: '#/definitions/User'
+ *             example:
+ *               id: 1
+ *               name: usertest
+ *               email: userTest@userMail.com
+ *               role: ADMIN
+ *               services: {facebook: 'facebook token', google: 'google token'}
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: Unauthorized error
+ *       404:
+ *         description: Not found
+ *       500:
+ *         description: Internal server error
+ *
+ *  put:
+ *    tags:
+ *      - Users
+ *    summary: Update any user by id.
+ *    description: Update user by id
+ *    security:
+ *      - bearerAuth: [admin]   
+ *    produces:
+ *      - application/json
+ *    consumes:
+ *      - application/json
+ *    parameters:
+ *       - name: id
+ *         in: path
+ *         description:
+ *         required: True
+ *         schema:
+ *           type: 'string'
+ *    requestBody:
+ *      description: User payload
+ *      content: 
+ *        'application/json':
+ *          schema:
+ *            $ref: '#/definitions/User'
+ *          example:
+ *            name: usertest
+ *            email: userTest@userMail.com
+ *            role: ADMIN
+ *            password: password
+ *            services: {facebook: 'facebook token', google: 'google token'}
+ *    responses:
+ *       200:
+ *         description: Operation executed with success
+ *         schema:
+ *           type: object
+ *           $ref: "#/definitions/User"
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: Unauthorized error
+ *       404:
+ *         description: Not found
+ *       500:
+ *         description: Internal server error
+ *
+ *  delete:
+ *    tags:
+ *      - Users
+ *    summary: Delete any user by id.
+ *    description: Delete user by id
+ *    security:
+ *      - bearerAuth: [admin]   
+ *    produces:
+ *      - application/json
+ *    consumes:
+ *      - application/json
+ *    parameters:
+ *      - name: id
+ *        in: path
+ *        description:
+ *        required: True
+ *        schema:
+ *          type: 'string'
+ *    responses:
+ *       204:
+ *         description: Operation executed with success
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: Unauthorized error
+ *       404:
+ *         description: Not found
+ *       500:
+ *         description: Internal server error
+ *
+ */
+
+
+ /**
+ * @swagger
+ * /users/profile:
+ *  get:
+ *    tags:
+ *      - Users
+ *    summary: Get logged user profile.
+ *    description: Get logged user profile
+ *    security:
+ *      - bearerAuth: [user]   
+ *    produces:
+ *      - application/json
+ *    consumes:
+ *      - application/json
+ *    responses:
+ *       200:
+ *         description: Operation executed with success
+ *         content: 
+ *           application/json:
+ *             schema:
+ *               $ref: '#/definitions/User'
+ *             example:
+ *               id: 1
+ *               name: usertest
+ *               email: userTest@userMail.com
+ *               role: ADMIN
+ *               services: {facebook: 'facebook token', google: 'google token'}
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: Unauthorized error
+ *       404:
+ *         description: Not found
+ *       500:
+ *         description: Internal server error
+ *
+ */
