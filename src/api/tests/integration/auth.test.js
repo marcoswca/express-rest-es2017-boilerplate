@@ -53,7 +53,7 @@ describe('Authentication API', () => {
       expires: moment().subtract(1, 'day').toDate(),
     };
 
-    await User.remove({});
+    await User.deleteMany({});
     await User.create(dbUser);
     await RefreshToken.remove({});
   });
